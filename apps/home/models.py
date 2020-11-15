@@ -11,12 +11,12 @@ class NextSale(models.Model):
     SALE_WINTER = "WINTER"
 
     SALE_CHOICES = (
-        (SALE_LUNAR, _('Lunar')),
-        (SALE_SPRING, _('Spring')),
-        (SALE_SUMMER, _('Summer')),
-        (SALE_HALLOWEEN, _('Halloween')),
-        (SALE_AUTUMN, _('Autumn')),
-        (SALE_WINTER, _('Winter'))
+        (SALE_LUNAR, _('Lunar New Year')),
+        (SALE_SPRING, _('Spring Sale')),
+        (SALE_SUMMER, _('Summer Sale')),
+        (SALE_HALLOWEEN, _('Halloween Sale')),
+        (SALE_AUTUMN, _('Autumn Sale')),
+        (SALE_WINTER, _('Winter Sale'))
     )
 
     name = models.CharField(_('name'), max_length=20, choices=SALE_CHOICES, unique=True)

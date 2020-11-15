@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css?family=Lato");
+
+body {
+  background-color: black;
+  text-align: center;
+}
+
+.header {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  height: 100vh;
+  position: relative;
+}
+
+#bgVideo {
+  width: 100%;
+  z-index: -1;
+
+}
+
+.header-title {
+  color: #b261c9;
+  margin: 0;
+  font-family: 'Bungee Shade', cursive;
+}
+
+.header h3, h4, h5 {
+  font-family: 'Goldman', cursive;
+  color: #e7d9eb;
+}
+
+canvas {
+  margin-top: 10px;
+  width: 60%;
+  left: 5%;
+  position: relative;
+}
+
+#head-btn {
+  margin: 40px 0;
+  background: #501e5b;
+  border-radius: 30px;
+  width: 20%;
+  font-family: 'Goldman', cursive;
+}
+
+@media screen and (min-width: 1080px) {
+
+  #bgVideo {
+    margin-top: -60px;
+    margin-bottom: -7px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+
+  .header {
+    width: 60%;
+
+  }
+
+  canvas {
+    width: 75%;
+    left: 7%;
+
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .header {
+    width: 70%;
+
+  }
+
+  #head-btn {
+    width: 30%;
+
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .header {
+    width: 80%;
+  }
+
+  .header-title {
+    font-size: 2.7rem;
+  }
+
+  canvas {
+    width: 90%;
+    left: 9%;
+
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header h3 {
+    font-size: 1.867rem;
+  }
+
+  .header h4 {
+    font-size: 1.467rem;
+  }
+
+  canvas {
+    width: 100%;
+  }
+
+  #head-btn {
+    width: 40%;
+  }
+
+  .header-title {
+    font-size: 3.2rem;
+  }
+}
