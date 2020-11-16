@@ -5,6 +5,11 @@ body {
   text-align: center;
 }
 
+.modal-open {
+  opacity: 0.2;
+
+}
+
 .header {
   width: 50%;
   margin: auto;
@@ -16,6 +21,10 @@ body {
 #bgVideo {
   width: 100%;
   z-index: -1;
+  -webkit-animation: fadein 0.6s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 0.6s; /* Firefox < 16 */
+  -o-animation: fadein 0.6s; /* Opera < 12.1 */
+  animation: fadein 0.6s;
 
 }
 
@@ -23,6 +32,10 @@ body {
   color: #b261c9;
   margin: 0;
   font-family: 'Bungee Shade', cursive;
+  -webkit-animation: zoomIn 0.6s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: zoomIn 0.6s; /* Firefox < 16 */
+  -o-animation: zoomIn 0.6s; /* Opera < 12.1 */
+  animation: zoomIn 0.6s;
 }
 
 .header h3, h4, h5 {
@@ -30,19 +43,105 @@ body {
   color: #e7d9eb;
 }
 
+.sale-name {
+  -webkit-animation: zoomIn 0.9s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: zoomIn 0.9s; /* Firefox < 16 */
+  -o-animation: zoomIn 0.9s; /* Opera < 12.1 */
+  animation: zoomIn 0.9s;
+}
+
+.sale-date {
+  -webkit-animation: zoomIn 1.2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: zoomIn 1.2s; /* Firefox < 16 */
+  -o-animation: zoomIn 1.2s; /* Opera < 12.1 */
+  animation: zoomIn 1.2s;
+}
+
 canvas {
   margin-top: 10px;
   width: 60%;
   left: 5%;
   position: relative;
+  -webkit-animation: zoomIn 1.5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: zoomIn 1.5s; /* Firefox < 16 */
+  -o-animation: zoomIn 1.5s; /* Opera < 12.1 */
+  animation: zoomIn 1.5s;
 }
 
 #head-btn {
   margin: 40px 0;
   background: #501e5b;
   border-radius: 30px;
-  width: 20%;
+  width: 27%;
   font-family: 'Goldman', cursive;
+  -webkit-animation: zoomIn 1.8s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: zoomIn 1.8s; /* Firefox < 16 */
+  -o-animation: zoomIn 1.8s; /* Opera < 12.1 */
+  animation: zoomIn 1.8s;
+}
+
+#sub {
+  font-family: 'Goldman', cursive;
+  background: #501e5b;
+  font-size: 0.856rem;
+  border-radius: 30px;
+  width: 40%;
+}
+
+.close {
+  font-size: 0.856rem;
+  border-radius: 30px;
+
+}
+
+.mdl-dialog {
+  border-radius: 35px;
+  border: 3px solid #782679;
+  padding-bottom: 40px;
+}
+
+.mdl-textfield__label:after {
+  background-color: #9042a9;
+}
+
+.mdl-textfield--floating-label.is-focused .mdl-textfield__label {
+  color: #9042a9;
+
+
+}
+
+.mdl-dialog__actions {
+  padding-left: 8px;
+}
+
+.mdl-dialog__title {
+  color: #9042a9;
+  font-size: 1.568rem;
+
+}
+
+.subscribe-form {
+  width: 100%;
+  margin-bottom: 40px;
+
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 @media screen and (min-width: 1080px) {
@@ -110,7 +209,7 @@ canvas {
   }
 
   #head-btn {
-    width: 40%;
+    width: 50%;
   }
 
   .header-title {
