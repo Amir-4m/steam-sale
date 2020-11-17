@@ -68,6 +68,15 @@ body {
   animation: zoomIn 1.5s;
 }
 
+.time_circles h4 {
+  font-size: 10px !important;
+}
+
+.time_circles > div > span {
+  margin-top: 0.8em;
+
+}
+
 #head-btn {
   margin: 40px 0;
   background: #501e5b;
@@ -198,6 +207,50 @@ body {
   color: #e7d9eb;
 }
 
+.mdl-grid {
+  margin-top: 60px;
+
+}
+
+.giveaway-item img {
+  width: 70%;
+  box-shadow: 2px -2px 12px 0px #9d00ff9e;
+
+}
+
+.item-info {
+  padding: 0;
+}
+
+.item-info li {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+.item-info li span {
+  font-family: 'Goldman', cursive;
+  color: #e7d9eb;
+}
+
+.how-works p {
+  line-height: 2.350rem;
+  text-align: justify;
+  padding: 0 10px;
+}
+
+.how-works h3 {
+  margin-top: 0;
+
+}
+
+#giveaway-btn {
+  margin: 40px 0;
+  background: #501e5b;
+  border-radius: 30px;
+  font-family: 'Goldman', cursive;
+
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
@@ -231,10 +284,23 @@ body {
 
   }
 
+  .astrodivider {
+    margin-top: 45px;
+  }
+
   .countdown {
     width: 75%;
 
   }
+}
+
+@media screen and (max-width: 840px) {
+
+
+  .astrodivider {
+    margin-top: 20px;
+  }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -242,6 +308,10 @@ body {
   .header {
     width: 70%;
 
+  }
+
+  #giveaway-btn {
+    margin: 15px 0;
   }
 
   #head-btn {
@@ -257,6 +327,7 @@ body {
 
   .astrodivider {
     width: 100%;
+    margin-top: 0;
   }
 
   .header-title {
@@ -276,6 +347,24 @@ body {
 
   .header h4 {
     font-size: 1.467rem;
+  }
+
+  .time_circles h4 {
+    font-size: 0.653rem !important;
+  }
+
+  .giveaway-section h3 {
+    font-size: 2rem;
+
+  }
+
+  .giveaway-section h4 {
+    font-size: 1.486rem;
+
+  }
+
+  .item-info li span {
+    font-size: 0.967rem;
   }
 
   .countdown {
