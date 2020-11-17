@@ -3,6 +3,7 @@
 body {
   background-color: black;
   text-align: center;
+  color: white;
 }
 
 .modal-open {
@@ -57,10 +58,9 @@ body {
   animation: zoomIn 1.2s;
 }
 
-canvas {
-  margin-top: 10px;
+.countdown {
   width: 60%;
-  left: 5%;
+  margin: auto;
   position: relative;
   -webkit-animation: zoomIn 1.5s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: zoomIn 1.5s; /* Firefox < 16 */
@@ -74,10 +74,10 @@ canvas {
   border-radius: 30px;
   width: 27%;
   font-family: 'Goldman', cursive;
-  -webkit-animation: zoomIn 1.8s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: zoomIn 1.8s; /* Firefox < 16 */
-  -o-animation: zoomIn 1.8s; /* Opera < 12.1 */
-  animation: zoomIn 1.8s;
+  -webkit-animation: zoomIn 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: zoomIn 2s; /* Firefox < 16 */
+  -o-animation: zoomIn 2s; /* Opera < 12.1 */
+  animation: zoomIn 2s;
 }
 
 #sub {
@@ -126,6 +126,78 @@ canvas {
 
 }
 
+.nav-icons {
+  text-align: left;
+}
+
+.nav-icons img {
+  width: 20px;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+
+.astrodivider {
+  margin: auto;
+  width: 80%;
+  max-width: 100%;
+  position: relative;
+}
+
+.astrodividermask {
+  overflow: hidden;
+  height: 20px;
+}
+
+.astrodividermask:after {
+  content: '';
+  display: block;
+  margin: -25px auto 0;
+  width: 100%;
+  height: 25px;
+  border-radius: 125px / 12px;
+  box-shadow: 0 0 8px #612184;
+}
+
+.astrodivider span {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: -25px;
+  left: 50%;
+  margin-left: -25px;
+  border-radius: 100%;
+  box-shadow: 0 2px 4px #501e5b;
+  background-image: linear-gradient(45deg, #55568b, #390d41);
+}
+
+.astrodivider img {
+  position: absolute;
+  top: 4px;
+  width: 42px;
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 40px;
+  font-style: normal;
+}
+
+.giveaway-section {
+  /*width: 50%;*/
+  margin: auto;
+  text-align: center;
+  height: 100vh;
+  position: relative;
+}
+
+.giveaway-section h3, h4, h5 {
+  font-family: 'Goldman', cursive;
+  color: #e7d9eb;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;
@@ -147,7 +219,7 @@ canvas {
 @media screen and (min-width: 1080px) {
 
   #bgVideo {
-    margin-top: -60px;
+    margin-top: -90px;
     margin-bottom: -7px;
   }
 }
@@ -159,9 +231,8 @@ canvas {
 
   }
 
-  canvas {
+  .countdown {
     width: 75%;
-    left: 7%;
 
   }
 }
@@ -184,13 +255,16 @@ canvas {
     width: 80%;
   }
 
+  .astrodivider {
+    width: 100%;
+  }
+
   .header-title {
     font-size: 2.7rem;
   }
 
-  canvas {
+  .countdown {
     width: 90%;
-    left: 9%;
 
   }
 }
@@ -204,7 +278,7 @@ canvas {
     font-size: 1.467rem;
   }
 
-  canvas {
+  .countdown {
     width: 100%;
   }
 

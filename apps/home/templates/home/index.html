@@ -3,13 +3,21 @@
 
 {% block content %}
   <section class="header-section">
+    <div class="nav-icons">
+      <a href="#" class="instagram"><img src="{% static 'images/instagram.png' %}"></a>
+      <a href="#" class="instagram"><img src="{% static 'images/gmail.png' %}"></a>
+      <a href="#" class="instagram"><img src="{% static 'images/broken.png' %}"></a>
+
+    </div>
     <div class="header" id="header">
       <video id="bgVideo" preload="true" autoplay loop muted>
         <source src="{% static 'images/MOSHED-2020-11-15-20-59-58.webm' %}" type="video/webm">
       </video>
       <h2 class="header-title">Next Steam Sale</h2>
       <h3 class="sale-name">{{ sale.get_name_display }}</h3>
-      <h4 class="sale-date">{{ sale.sale_date|date:"F d Y" }}</h4>
+      <div class="countdown">
+        <div class="countdown-time sale-date" data-date="{{ sale.sale_date|date:"F d Y" }}" style="color: white"></div>
+      </div>
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="head-btn">
         Subscribe
       </button>
@@ -26,7 +34,8 @@
               <input class="mdl-textfield__input" type="text" id="sample3">
               <label class="mdl-textfield__label" for="sample3">E-mail</label>
             </div>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="sub">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    id="sub">
               Submit
             </button>
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect close">
@@ -37,123 +46,71 @@
       </dialog>
     </div>
   </section>
+  <div class="astrodivider">
+    <div class="astrodividermask"></div>
+    <span>
+        <img src="{% static 'images/steam.png' %}">
+      </span>
+  </div>
+  <section class="giveaway-section">
+    <h3 class="giveaway-title" id="giveaway">Get Monthly Giveaway</h3>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--8-col mdl-cell--4-col-tablet mdl-cell--4-col-phone giveaway-item">
+        <div class="wrapper">
+          <div class="card">
+            <h1>
+              <span class="enclosed">Cut</span>out
+            </h1>
+          </div>
+        </div>
+      </div>
+      <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone how-works">
+        (4 phone )
+      </div>
+    </div>
+  </section>
 {% endblock %}
 
 {% block js %}
   {{ block.super }}
   <script>
-    var ringer = {
-      //countdown_to: "10/31/2014",
-      countdown_to: "{{sale.sale_date}}",
-      rings: {
-        'DAYS': {
-          s: 86400000, // mseconds in a day,
-          max: 365
-        },
-        'HOURS': {
-          s: 3600000, // mseconds per hour,
-          max: 24
-        },
-        'MINUTES': {
-          s: 60000, // mseconds per minute
-          max: 60
-        },
-        'SECONDS': {
-          s: 1000,
-          max: 60
-        },
+    var countdown = $('.countdown-time');
+    createTimeCicles();
+    $(window).on('resize', windowSize);
 
-      },
-      r_count: 5,
-      r_spacing: 10, // px
-      r_size: 100, // px
-      r_thickness: 2, // px
-      update_interval: 11, // ms
-
-
-      init: function () {
-
-        $r = ringer;
-        $r.cvs = document.createElement('canvas');
-
-        $r.size = {
-          w: ($r.r_size + $r.r_thickness) * $r.r_count + ($r.r_spacing * ($r.r_count - 1)),
-          h: ($r.r_size + $r.r_thickness)
-        };
-
-
-        $r.cvs.setAttribute('width', $r.size.w);
-        $r.cvs.setAttribute('height', $r.size.h);
-        $r.ctx = $r.cvs.getContext('2d');
-        $(document.getElementById('head-btn')).before($r.cvs);
-        $r.cvs.after(document.createElement("BR"));
-        $r.cvs = $($r.cvs);
-        $r.ctx.textAlign = 'center';
-        $r.actual_size = $r.r_size + $r.r_thickness;
-        $r.countdown_to_time = new Date($r.countdown_to).getTime();
-        $r.go();
-      },
-      ctx: null,
-      go: function () {
-        var idx = 0;
-
-        $r.time = (new Date().getTime()) - $r.countdown_to_time;
-
-
-        for (var r_key in $r.rings) $r.unit(idx++, r_key, $r.rings[r_key]);
-
-        setTimeout($r.go, $r.update_interval);
-      },
-      unit: function (idx, label, ring) {
-        var x, y, value, ring_secs = ring.s;
-        value = parseFloat($r.time / ring_secs);
-        $r.time -= Math.round(parseInt(value)) * ring_secs;
-        value = Math.abs(value);
-
-        x = ($r.r_size * .5 + $r.r_thickness * .5);
-        x += +(idx * ($r.r_size + $r.r_spacing + $r.r_thickness));
-        y = $r.r_size * .5;
-        y += $r.r_thickness * .5;
-
-
-        // calculate arc end angle
-        var degrees = 360 - (value / ring.max) * 360.0;
-        var endAngle = degrees * (Math.PI / 180);
-
-        $r.ctx.save();
-
-        $r.ctx.translate(x, y);
-        $r.ctx.clearRect($r.actual_size * -0.5, $r.actual_size * -0.5, $r.actual_size, $r.actual_size);
-
-        // first circle
-        $r.ctx.strokeStyle = "rgba(128,128,128,0.2)";
-        $r.ctx.beginPath();
-        $r.ctx.arc(0, 0, $r.r_size / 2, 0, 2 * Math.PI, 2);
-        $r.ctx.lineWidth = $r.r_thickness;
-        $r.ctx.stroke();
-
-        // second circle
-        $r.ctx.strokeStyle = "rgba(178,97,201,0.9)";
-        $r.ctx.beginPath();
-        $r.ctx.arc(0, 0, $r.r_size / 2, 0, endAngle, 1);
-        $r.ctx.lineWidth = $r.r_thickness;
-        $r.ctx.stroke();
-
-        // label
-        $r.ctx.fillStyle = "#ffffff";
-
-        $r.ctx.font = '12px Helvetica';
-        $r.ctx.fillText(label, 0, 23);
-        $r.ctx.fillText(label, 0, 23);
-
-        $r.ctx.font = 'bold 40px Helvetica';
-        $r.ctx.fillText(Math.floor(value), 0, 10);
-
-        $r.ctx.restore();
-      }
+    function windowSize() {
+      countdown.TimeCircles().destroy();
+      createTimeCicles();
+      countdown.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd animationEnd', function () {
+        countdown.removeClass('animated bounceIn');
+      });
     }
 
-    ringer.init();
+    function createTimeCicles() {
+      countdown.addClass('animated bounceIn');
+      countdown.TimeCircles({
+        fg_width: 0.015,
+        bg_width: 0.1,
+        circle_bg_color: '#ffffff',
+        time: {
+          Days: {
+            color: '#b261c9'
+          },
+          Hours: {
+            color: '#b261c9'
+          },
+          Minutes: {
+            color: '#b261c9'
+          },
+          Seconds: {
+            color: '#b261c9'
+          }
+        }
+      });
+      countdown.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd animationEnd', function () {
+        countdown.removeClass('animated bounceIn');
+      });
+    }
   </script>
 
 {% endblock %}
