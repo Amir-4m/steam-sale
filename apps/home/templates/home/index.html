@@ -11,7 +11,7 @@
     </div>
     <div class="header" id="header">
       <video id="bgVideo" preload="true" autoplay loop muted>
-        <source src="{% static 'images/MOSHED-2020-11-15-20-59-58.webm' %}" type="video/webm">
+        <source src="{% static 'images/steam2.webm' %}" type="video/webm">
       </video>
       <h2 class="header-title">Next Steam Sale</h2>
       <h3 class="sale-name">{{ sale.get_name_display }}</h3>
@@ -63,7 +63,10 @@
           <li><span>Giveaway Ends In:&nbsp;</span><span>22th Nov</span></li>
           <li><span>Winner Will Be Announced In:&nbsp;</span><span>5 Days</span></li>
         </ul>
-
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                id="giveaway-btn">
+          Take a chance !
+        </button>
       </div>
       <div class="mdl-cell mdl-cell--5-col mdl-cell--8-col-tablet mdl-cell--4-col-phone how-works">
         <h3>How It Works</h3>
@@ -74,13 +77,76 @@
           will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by
           accident, sometimes on purpose (injected humour and the like).
         </p>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                id="giveaway-btn">
-          Take a chance !
-        </button>
       </div>
     </div>
   </section>
+  <section class="attention-section" id="attention">
+    <div class="attention-box">
+      <h3>Attention!</h3>
+      <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
+        will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by
+        accident, sometimes on purpose (injected humour and the like).</p>
+      <ul>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+      </ul>
+      <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum' sites still in their infancy. </p>
+
+    </div>
+  </section>
+  <section class="update-section" id="update">
+    <h3 class="update-title">Keep Updated</h3>
+    <p>Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus,
+      metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis
+      in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed
+      non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus
+      nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices
+      enim. Curabitur sit amet mauris. </p>
+
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="update-btn">
+      Subscribe
+    </button>
+
+    <dialog class="mdl-dialog">
+      <h4 class="mdl-dialog__title">Need Latest News About Sales?</h4>
+      <div class="mdl-dialog__content">
+        <p>
+          Track awesome offers from steam and other platforms just by entering your email!
+        </p>
+      </div>
+      <div class="mdl-dialog__actions">
+        <form action="#" class="subscribe-form">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="sample3">
+            <label class="mdl-textfield__label" for="sample3">E-mail</label>
+          </div>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                  id="sub">
+            Submit
+          </button>
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect close">
+            Dismiss
+          </button>
+        </form>
+      </div>
+    </dialog>
+    <br/>
+
+    <img src="{% static 'images/bell.gif' %}">
+
+  </section>
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__left-section">
+      <div class="mdl-logo">Next Steam Sale</div>
+      <ul class="mdl-mini-footer__link-list">
+        <li><a href="#">Privacy & Terms</a></li>
+      </ul>
+    </div>
+  </footer>
 {% endblock %}
 
 {% block js %}

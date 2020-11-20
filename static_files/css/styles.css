@@ -198,7 +198,6 @@ body {
   /*width: 50%;*/
   margin: auto;
   text-align: center;
-  height: 100vh;
   position: relative;
 }
 
@@ -244,11 +243,78 @@ body {
 }
 
 #giveaway-btn {
-  margin: 40px 0;
+  margin: 10px 0;
   background: #501e5b;
   border-radius: 30px;
   font-family: 'Goldman', cursive;
 
+}
+
+.attention-section {
+  text-align: center;
+  position: relative;
+  margin: 100px auto
+
+}
+
+.attention-section h3, h4, h5 {
+  font-family: 'Goldman', cursive;
+  color: #e27cff;
+}
+
+.attention-box {
+  width: 70%;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 2px 0px 13px #501e5b;
+  background: #27013f40;
+  border-radius: 25px;
+}
+
+.attention-box li {
+  list-style: none;
+  font-size: 1.216rem;
+  margin-bottom: 15px;
+}
+
+.attention-box ul {
+  padding: 0;
+}
+
+
+.update-section {
+  margin: 35px auto auto;
+  text-align: center;
+  position: relative;
+
+}
+
+.update-section h3, h4, h5 {
+  font-family: 'Goldman', cursive;
+  color: #e7d9eb;
+}
+
+.update-section p {
+  width: 70%;
+  margin: auto;
+  line-height: 2.350rem;
+  text-align: justify;
+  padding: 0 10px;
+}
+
+#update-btn {
+  margin: 40px 0;
+  background: #501e5b;
+  border-radius: 30px;
+  width: 27%;
+  font-family: 'Goldman', cursive;
+
+}
+.update-section img{
+  width: 30%;
+}
+.mdl-mini-footer {
+  background-color: #0a0010cf;
 }
 
 @keyframes fadein {
@@ -296,11 +362,17 @@ body {
 
 @media screen and (max-width: 840px) {
 
+  .update-section p {
+    width: 88%;
+  }
 
   .astrodivider {
     margin-top: 20px;
   }
 
+  .attention-box {
+    width: 75%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -375,7 +447,23 @@ body {
     width: 50%;
   }
 
+  #update-btn {
+    width: 50%;
+  }
+
   .header-title {
     font-size: 3.2rem;
+  }
+
+  .attention-box {
+    width: 78%;
+  }
+
+  .mdl-mini-footer {
+    display: block;
+  }
+
+  .mdl-mini-footer--link-list li, .mdl-mini-footer__link-list li {
+    margin-right: 0;
   }
 }
