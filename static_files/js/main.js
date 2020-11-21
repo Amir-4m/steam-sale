@@ -1,31 +1,38 @@
-var dialog = document.querySelector('dialog');
-var headSec = document.querySelector('#header');
-var updateSec = document.querySelector('#update');
-var showDialogButton = document.querySelector('#head-btn');
-var dialogUpdate = document.querySelector('dialog');
-var showDialogButtonUpdate = document.querySelector('#update-btn');
+// Get the modal
+var modal = document.getElementById("headModal");
+var updateModal = document.getElementById("updateModal");
 
-if (!dialog.showModal) {
-  dialogPolyfill.registerDialog(dialog);
-}
-showDialogButton.addEventListener('click', function () {
-  headSec.classList.add('modal-open');
-  dialog.showModal();
-});
-dialog.querySelector('.close').addEventListener('click', function () {
-  headSec.classList.remove('modal-open');
-  dialog.close();
-});
+// Get the button that opens the modal
+var btn = document.getElementById("head-btn");
+var updateBtn = document.getElementById("update-btn");
 
 
-if (!dialogUpdate.showModal) {
-  dialogPolyfill.registerDialog(dialogUpdate);
-}
-showDialogButtonUpdate.addEventListener('click', function () {
-  updateSec.classList.add('modal-open');
-  dialogUpdate.showModal();
-});
-dialogUpdate.querySelector('.close').addEventListener('click', function () {
-  updateSec.classList.remove('modal-open');
-  dialogUpdate.close();
-});
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+var updateSpan = document.getElementsByClassName("close")[1];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+};
+updateBtn.onclick = function() {
+  updateModal.style.display = "block";
+};
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+};
+updateSpan.onclick = function() {
+  updateModal.style.display = "none";
+};
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
+window.onclick = function(event) {
+  if (event.target === updateModal) {
+    updateModal.style.display = "none";
+  }
+};

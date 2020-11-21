@@ -10,40 +10,44 @@
 
     </div>
     <div class="header" id="header">
-      <video id="bgVideo" preload="true" autoplay loop muted>
-        <source src="{% static 'images/steam2.webm' %}" type="video/webm">
-      </video>
+      <img id="bgVideo" src="{% static 'images/steam.gif' %}">
       <h2 class="header-title">Next Steam Sale</h2>
       <h3 class="sale-name">{{ sale.get_name_display }}</h3>
       <div class="countdown">
         <div class="countdown-time sale-date" data-date="{{ sale.sale_date|date:"F d Y" }}" style="color: white"></div>
       </div>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="head-btn">
+      <button class="mdl-button mdl-button--accent mdl-button--raised" id="head-btn">
         Subscribe
       </button>
-      <dialog class="mdl-dialog">
-        <h4 class="mdl-dialog__title">Need Latest News About Sales?</h4>
-        <div class="mdl-dialog__content">
-          <p>
-            Track awesome offers from steam and other platforms just by entering your email!
-          </p>
+      <!-- The Modal -->
+      <div id="headModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h4 class="mdl-dialog__title">Need Latest News About Sales?</h4>
+          <div class="mdl-dialog__content">
+            <p>
+              Track awesome offers from steam and other platforms just by entering your email!
+            </p>
+          </div>
+          <div class="mdl-dialog__actions">
+            <form action="#" class="subscribe-form">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" id="email">
+                <label class="mdl-textfield__label" for="email">E-mail</label>
+              </div>
+              <br/>
+              <button class="mdl-button mdl-button--accent mdl-button--raised"
+                      id="sub">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-        <div class="mdl-dialog__actions">
-          <form action="#" class="subscribe-form">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="sample3">
-              <label class="mdl-textfield__label" for="sample3">E-mail</label>
-            </div>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                    id="sub">
-              Submit
-            </button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect close">
-              Dismiss
-            </button>
-          </form>
-        </div>
-      </dialog>
+
+      </div>
+
     </div>
   </section>
   <div class="astrodivider">
@@ -63,7 +67,7 @@
           <li><span>Giveaway Ends In:&nbsp;</span><span>22th Nov</span></li>
           <li><span>Winner Will Be Announced In:&nbsp;</span><span>5 Days</span></li>
         </ul>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+        <button class="mdl-button mdl-button--accent mdl-button--raised"
                 id="giveaway-btn">
           Take a chance !
         </button>
@@ -107,33 +111,37 @@
       nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices
       enim. Curabitur sit amet mauris. </p>
 
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="update-btn">
+    <button class="mdl-button mdl-button--accent mdl-button--raised" id="update-btn">
       Subscribe
     </button>
+    <!-- The Modal -->
+    <div id="updateModal" class="modal">
 
-    <dialog class="mdl-dialog">
-      <h4 class="mdl-dialog__title">Need Latest News About Sales?</h4>
-      <div class="mdl-dialog__content">
-        <p>
-          Track awesome offers from steam and other platforms just by entering your email!
-        </p>
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h4 class="mdl-dialog__title">Need Latest News About Sales?</h4>
+        <div class="mdl-dialog__content">
+          <p>
+            Track awesome offers from steam and other platforms just by entering your email!
+          </p>
+        </div>
+        <div class="mdl-dialog__actions">
+          <form action="#" class="subscribe-form">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="email" id="email">
+              <label class="mdl-textfield__label" for="email">E-mail</label>
+            </div>
+            <br/>
+            <button class="mdl-button mdl-button--accent mdl-button--raised"
+                    id="sub">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
-      <div class="mdl-dialog__actions">
-        <form action="#" class="subscribe-form">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="sample3">
-            <label class="mdl-textfield__label" for="sample3">E-mail</label>
-          </div>
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                  id="sub">
-            Submit
-          </button>
-          <button class="mdl-button mdl-js-button mdl-js-ripple-effect close">
-            Dismiss
-          </button>
-        </form>
-      </div>
-    </dialog>
+
+    </div>
     <br/>
 
     <img src="{% static 'images/bell.gif' %}">
@@ -167,8 +175,8 @@
     function createTimeCicles() {
       countdown.addClass('animated bounceIn');
       countdown.TimeCircles({
-        fg_width: 0.015,
-        bg_width: 0.1,
+        fg_width: 0.02,
+        bg_width: 0.3,
         circle_bg_color: '#ffffff',
         time: {
           Days: {
