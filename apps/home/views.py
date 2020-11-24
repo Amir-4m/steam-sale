@@ -26,7 +26,8 @@ class HomeView(TemplateView):
         context.update({
             "sale": NextSale.objects.order_by('-sale_date').first(),
             "giveaway": Giveaway.objects.last(),
-            "account_api_url": reverse('verify'),
+            "newsletter_api_url": reverse('subscribe'),
+            "giveaway_api_url": reverse('register'),
             "user": user
         })
         return context

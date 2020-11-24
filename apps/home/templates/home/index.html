@@ -32,7 +32,7 @@
               </p>
             </div>
             <div class="mdl-dialog__actions" id="diaac1">
-              <form action="{{ account_api_url }}" class="subscribe-form" id="subscribe-form_top">
+              <form action="{{ newsletter_api_url }}" class="subscribe-form" id="subscribe-form_top">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   <input class="mdl-textfield__input" type="email" id="email" name="email">
                   <label class="mdl-textfield__label" for="email">E-mail</label>
@@ -41,7 +41,8 @@
                 <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
                   Submit
                 </button>
-              </form>{% csrf_token %}
+              </form>
+              {% csrf_token %}
             </div>
             <h4 class="mdl-dialog__title" id="submsg1">Thank You!</h4>
             <div class="mdl-dialog__content" id="subcon1">
@@ -94,6 +95,53 @@
           <button class="mdl-button mdl-button--accent mdl-button--raised" id="giveaway-btn">
             Take a chance !
           </button>
+          <!-- The Modal -->
+          <div id="giveawayModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              {% if user is None or user.registered_giveaways.last.id != giveaway.id %}
+                <h4 class="mdl-dialog__title" id="givdiatitle">Need Latest News About Sales?</h4>
+                <div class="mdl-dialog__content" id="givdiacon">
+                  <p>
+                    Track awesome offers from steam and other platforms just by entering your email!
+                  </p>
+                </div>
+                <div class="mdl-dialog__actions" id="givdiaac">
+                  <form action="{{ giveaway_api_url }}" class="giveaway-form" id="giveaway-form">{% csrf_token %}
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="email" id="email" name="email">
+                      <label class="mdl-textfield__label" for="email">E-mail</label>
+                    </div>
+                    <br/>
+                    <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
+                      Submit
+                    </button>
+                  </form>
+                </div>
+                <h4 class="mdl-dialog__title" id="submsg3">You Have Registered For This Giveaway!</h4>
+                <div class="mdl-dialog__content" id="subcon3">
+                  <p>
+                    your referral link:
+                  </p>
+                  <span>wwww.example.com</span>
+                </div>
+              {% else %}
+                <h4 class="mdl-dialog__title">You Have Registered Already!</h4>
+                <div class="mdl-dialog__content">
+                  <p>
+                    your referral link:
+                  </p>
+                  <span>wwww.example.com</span>
+                <p style="margin-top: 20px">
+                    send the link to your friends to grow your chance up!
+                  </p>
+                </div>
+              {% endif %}
+            </div>
+
+          </div>
         {% endif %}
 
       </div>
@@ -129,7 +177,8 @@
   </section>
   <section class="update-section" id="update">
     <h3 class="update-title">Keep Updated</h3>
-    <p class="update-para">Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus,
+    <p class="update-para">Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus
+      magna. Quisque cursus,
       metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis
       in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed
       non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus
@@ -143,41 +192,42 @@
     <div id="updateModal" class="modal">
 
       <!-- Modal content -->
-      <div class="modal-content">
+      <div class="modal-content" id="modalcon2">
         <span class="close">&times;</span>
         {% if user is None or not user.is_subscriber %}
-            <h4 class="mdl-dialog__title" id="diatitle2">Need Latest News About Sales?</h4>
-            <div class="mdl-dialog__content" id="diacon2">
-              <p>
-                Track awesome offers from steam and other platforms just by entering your email!
-              </p>
-            </div>
-            <div class="mdl-dialog__actions" id="diaac2">
-              <form action="{{ account_api_url }}" class="subscribe-form" id="subscribe-form_bottom">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="email" id="email" name="email">
-                  <label class="mdl-textfield__label" for="email">E-mail</label>
-                </div>
-                <br/>
-                <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
-                  Submit
-                </button>
-              </form>{% csrf_token %}
-            </div>
-            <h4 class="mdl-dialog__title" id="submsg2">Thank You!</h4>
-            <div class="mdl-dialog__content" id="subcon3">
-              <p>
-                You will be informed about incredible offers !
-              </p>
-            </div>
-          {% else %}
-            <h4 class="mdl-dialog__title">You Are In The Team!</h4>
-            <div class="mdl-dialog__content">
-              <p>
-                You have subscribe to newsletter already!
-              </p>
-            </div>
-          {% endif %}
+          <h4 class="mdl-dialog__title" id="diatitle2">Need Latest News About Sales?</h4>
+          <div class="mdl-dialog__content" id="diacon2">
+            <p>
+              Track awesome offers from steam and other platforms just by entering your email!
+            </p>
+          </div>
+          <div class="mdl-dialog__actions" id="diaac2">
+            <form action="{{ newsletter_api_url }}" class="subscribe-form" id="subscribe-form_bottom">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" id="email" name="email">
+                <label class="mdl-textfield__label" for="email">E-mail</label>
+              </div>
+              <br/>
+              <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
+                Submit
+              </button>
+            </form>
+            {% csrf_token %}
+          </div>
+          <h4 class="mdl-dialog__title" id="submsg2">Thank You!</h4>
+          <div class="mdl-dialog__content" id="subcon2">
+            <p>
+              You will be informed about incredible offers !
+            </p>
+          </div>
+        {% else %}
+          <h4 class="mdl-dialog__title">You Are In The Team!</h4>
+          <div class="mdl-dialog__content">
+            <p>
+              You have subscribe to newsletter already!
+            </p>
+          </div>
+        {% endif %}
       </div>
 
     </div>

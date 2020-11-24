@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "apps.home",
     "apps.giveaways",
     "apps.accounts",
+    "apps.newsletters",
     "rest_framework",
 
     'django.contrib.admin',

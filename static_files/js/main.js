@@ -1,15 +1,18 @@
 // Get the modal
 var modal = document.getElementById("headModal");
 var updateModal = document.getElementById("updateModal");
+var giveawayModal = document.getElementById("giveawayModal");
 
 // Get the button that opens the modal
 var btn = document.getElementById("head-btn");
 var updateBtn = document.getElementById("update-btn");
+var giveawayBtn = document.getElementById("giveaway-btn");
 
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-var updateSpan = document.getElementsByClassName("close")[1];
+var updateSpan = document.getElementsByClassName("close")[2];
+var giveawaySpan = document.getElementsByClassName("close")[1];
 
 // When the user clicks the button, open the modal
 btn.onclick = function () {
@@ -18,12 +21,18 @@ btn.onclick = function () {
 updateBtn.onclick = function () {
   updateModal.style.display = "block";
 };
+giveawayBtn.onclick = function () {
+  giveawayModal.style.display = "block";
+};
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
   modal.style.display = "none";
 };
 updateSpan.onclick = function () {
   updateModal.style.display = "none";
+};
+giveawaySpan.onclick = function () {
+  giveawayModal.style.display = "none";
 };
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
@@ -34,6 +43,11 @@ window.onclick = function (event) {
 window.onclick = function (event) {
   if (event.target === updateModal) {
     updateModal.style.display = "none";
+  }
+};
+window.onclick = function (event) {
+  if (event.target === giveawayModal) {
+    giveawayModal.style.display = "none";
   }
 };
 
@@ -85,6 +99,33 @@ window.onclick = function (event) {
       $("#modalcon2").delay(950).animate({minHeight: "15%"}, 1000);
       $("#submsg2").delay(1200).fadeIn(600);
       $("#subcon2").delay(1500).fadeIn(600);
+
+
+    });
+  });
+
+  $("#giveaway-form").submit(function (event) {
+    var $crf_token = $('[name="csrfmiddlewaretoken"]').attr('value');
+    // Stop form from submitting normally
+    event.preventDefault();
+
+    // Get some values from elements on the page:
+    var $form = $(this),
+      email = $form.find("input[name='email']").val(),
+      url = $form.attr("action");
+
+    // Send the data using post
+    var posting = $.post(url, {email: email, is_subscriber: true, csrfmiddlewaretoken: $crf_token});
+
+    // Put the results in a div
+    posting.done(function (data) {
+      $.cookie('s_uid', data.token, {expires: 10});
+      $.post(url, {email: email, is_subscriber: true, csrfmiddlewaretoken: $crf_token});
+      $("#givdiatitle").fadeOut(1000);
+      $("#givdiacon").fadeOut(600);
+      $("#givdiaac").fadeOut(200);
+      $("#submsg3").delay(1200).fadeIn(600);
+      $("#subcon3").delay(1500).fadeIn(600);
 
 
     });

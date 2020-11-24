@@ -124,13 +124,10 @@ body {
   padding: 20px 20px 40px;
 }
 
-#submsg1 {
+#submsg1, #subcon1, #submsg2, #subcon2, #submsg3, #subcon3 {
   display: none;
 }
 
-#subcon1 {
-  display: none;
-}
 
 /* The Close Button */
 .close {
@@ -169,6 +166,12 @@ body {
 
 .mdl-textfield__input {
   color: black;
+
+}
+
+.giveaway-form {
+  width: 100%;
+  margin-bottom: 40px;
 
 }
 
