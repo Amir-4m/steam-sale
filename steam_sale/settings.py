@@ -33,6 +33,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost', cast=Csv())
 
 INSTALLED_APPS = [
     "apps.home",
+    "apps.giveaways",
+    "apps.accounts",
+    "rest_framework",
 
     'django.contrib.admin',
     'django.contrib.auth',

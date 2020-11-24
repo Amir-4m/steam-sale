@@ -21,29 +21,42 @@
       </button>
       <!-- The Modal -->
       <div id="headModal" class="modal">
-
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="modal-content" id="modalcon1">
           <span class="close">&times;</span>
-          <h4 class="mdl-dialog__title">Need Latest News About Sales?</h4>
-          <div class="mdl-dialog__content">
-            <p>
-              Track awesome offers from steam and other platforms just by entering your email!
-            </p>
-          </div>
-          <div class="mdl-dialog__actions">
-            <form action="#" class="subscribe-form">
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="email" id="email">
-                <label class="mdl-textfield__label" for="email">E-mail</label>
-              </div>
-              <br/>
-              <button class="mdl-button mdl-button--accent mdl-button--raised"
-                      id="sub">
-                Submit
-              </button>
-            </form>
-          </div>
+          {% if user is None or not user.is_subscriber %}
+            <h4 class="mdl-dialog__title" id="diatitle1">Need Latest News About Sales?</h4>
+            <div class="mdl-dialog__content" id="diacon1">
+              <p>
+                Track awesome offers from steam and other platforms just by entering your email!
+              </p>
+            </div>
+            <div class="mdl-dialog__actions" id="diaac1">
+              <form action="{{ account_api_url }}" class="subscribe-form" id="subscribe-form_top">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="email" id="email" name="email">
+                  <label class="mdl-textfield__label" for="email">E-mail</label>
+                </div>
+                <br/>
+                <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
+                  Submit
+                </button>
+              </form>{% csrf_token %}
+            </div>
+            <h4 class="mdl-dialog__title" id="submsg1">Thank You!</h4>
+            <div class="mdl-dialog__content" id="subcon1">
+              <p>
+                You will be informed about incredible offers !
+              </p>
+            </div>
+          {% else %}
+            <h4 class="mdl-dialog__title">You Are In The Team!</h4>
+            <div class="mdl-dialog__content">
+              <p>
+                You have subscribe to newsletter already!
+              </p>
+            </div>
+          {% endif %}
         </div>
 
       </div>
@@ -65,16 +78,24 @@
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--7-col mdl-cell--8-col-tablet mdl-cell--4-col-phone giveaway-item">
         <img src="{% static 'images/csgo.jpeg' %}">
-        <h4>Counter Strike Global Offensive</h4>
+        <h4>{{ giveaway.name }}</h4>
         <ul class="item-info">
-          <li><span>Giveaway Status:&nbsp;</span><span style="color: green">Active</span></li>
-          <li><span>Giveaway Ends In:&nbsp;</span><span>22th Nov</span></li>
-          <li><span>Winner Will Be Announced In:&nbsp;</span><span>5 Days</span></li>
+          <li><span>Giveaway Status:&nbsp;</span>
+            {% if giveaway.is_enable %}
+              <span style="color: green">Active</span>
+            {% else %}
+              <span style="color: red">Expired</span>
+            {% endif %}
+          </li>
+          <li><span>Giveaway Ends In:&nbsp;</span><span>{{ giveaway.end_date }}</span></li>
+          <li><span>Winner Will Be Announced In:&nbsp;</span><span>{{ giveaway.announce_date }}</span></li>
         </ul>
-        <button class="mdl-button mdl-button--accent mdl-button--raised"
-                id="giveaway-btn">
-          Take a chance !
-        </button>
+        {% if giveaway.is_enable %}
+          <button class="mdl-button mdl-button--accent mdl-button--raised" id="giveaway-btn">
+            Take a chance !
+          </button>
+        {% endif %}
+
       </div>
       <div class="mdl-cell mdl-cell--5-col mdl-cell--8-col-tablet mdl-cell--4-col-phone how-works">
         <h3>How It Works</h3>
@@ -108,7 +129,7 @@
   </section>
   <section class="update-section" id="update">
     <h3 class="update-title">Keep Updated</h3>
-    <p>Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus,
+    <p class="update-para">Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus,
       metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis
       in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed
       non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus
@@ -124,25 +145,39 @@
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h4 class="mdl-dialog__title">Need Latest News About Sales?</h4>
-        <div class="mdl-dialog__content">
-          <p>
-            Track awesome offers from steam and other platforms just by entering your email!
-          </p>
-        </div>
-        <div class="mdl-dialog__actions">
-          <form action="#" class="subscribe-form">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="email" id="email">
-              <label class="mdl-textfield__label" for="email">E-mail</label>
+        {% if user is None or not user.is_subscriber %}
+            <h4 class="mdl-dialog__title" id="diatitle2">Need Latest News About Sales?</h4>
+            <div class="mdl-dialog__content" id="diacon2">
+              <p>
+                Track awesome offers from steam and other platforms just by entering your email!
+              </p>
             </div>
-            <br/>
-            <button class="mdl-button mdl-button--accent mdl-button--raised"
-                    id="sub">
-              Submit
-            </button>
-          </form>
-        </div>
+            <div class="mdl-dialog__actions" id="diaac2">
+              <form action="{{ account_api_url }}" class="subscribe-form" id="subscribe-form_bottom">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="email" id="email" name="email">
+                  <label class="mdl-textfield__label" for="email">E-mail</label>
+                </div>
+                <br/>
+                <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
+                  Submit
+                </button>
+              </form>{% csrf_token %}
+            </div>
+            <h4 class="mdl-dialog__title" id="submsg2">Thank You!</h4>
+            <div class="mdl-dialog__content" id="subcon3">
+              <p>
+                You will be informed about incredible offers !
+              </p>
+            </div>
+          {% else %}
+            <h4 class="mdl-dialog__title">You Are In The Team!</h4>
+            <div class="mdl-dialog__content">
+              <p>
+                You have subscribe to newsletter already!
+              </p>
+            </div>
+          {% endif %}
       </div>
 
     </div>

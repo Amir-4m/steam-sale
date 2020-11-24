@@ -118,9 +118,18 @@ body {
   background-color: #fefefe;
   margin: auto;
   width: 20%;
+  min-height: 48%;
   border-radius: 35px;
   border: 3px solid #782679;
   padding: 20px 20px 40px;
+}
+
+#submsg1 {
+  display: none;
+}
+
+#subcon1 {
+  display: none;
 }
 
 /* The Close Button */
@@ -155,6 +164,11 @@ body {
 .mdl-dialog__title {
   color: #9042a9;
   font-size: 1.568rem;
+
+}
+
+.mdl-textfield__input {
+  color: black;
 
 }
 
@@ -347,7 +361,7 @@ body {
   color: #e7d9eb;
 }
 
-.update-section p {
+.update-para {
   width: 70%;
   margin: auto;
   line-height: 2.350rem;
@@ -395,6 +409,19 @@ body {
   }
 }
 
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0.01;
+  }
+  100% {
+    opacity: 0;
+    display: none
+  }
+}
+
 @keyframes zoomIn {
   from {
     transform: scale(0);
@@ -432,7 +459,7 @@ body {
 
 @media screen and (max-width: 840px) {
 
-  .update-section p {
+  .update-para {
     width: 88%;
   }
 
