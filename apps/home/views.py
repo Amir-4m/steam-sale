@@ -1,6 +1,8 @@
 import base64
 from urllib.parse import unquote
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_control, cache_page
 from django.views.generic import TemplateView
 
 from apps.giveaways.models import Giveaway
@@ -9,6 +11,8 @@ from apps.accounts.models import Account
 from .models import NextSale
 
 
+@method_decorator(cache_control(max_age=1 * 24 * 60 * 60), name='get')  # 1 day
+@method_decorator(cache_page(1 * 24 * 60 * 60), name='get')  # 1 day
 class HomeView(TemplateView):
     template_name = 'home/index.html'
 
