@@ -1,306 +1,312 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_head %}
+  {% include 'home/includes/schema.html' %}
+{% endblock %}
 {% block content %}
-    <section class="header-section">
-        <a id="next-sale"></a>
-        <div class="nav-icons">
-            <a href="#" class="instagram"><img src="{% static 'images/instagram.png' %}"></a>
-            <a href="#" class="instagram"><img src="{% static 'images/gmail.png' %}"></a>
-            <a href="#" class="instagram"><img src="{% static 'images/broken.png' %}"></a>
-
-        </div>
-        <div class="header" id="header">
-            <img id="bgVideo" src="{% static 'images/steam.gif' %}">
-            <h2 class="header-title">Next Steam Sale</h2>
-            <h3 class="sale-name">{{ sale.get_name_display }}</h3>
-            <div class="countdown">
-                <div class="countdown-time sale-date" data-date="{{ sale.sale_date|date:"F d Y" }}"
-                     style="color: white"></div>
-            </div>
-            <button class="mdl-button mdl-button--accent mdl-button--raised" id="head-btn">
-                Subscribe
-            </button>
-            <!-- The Modal -->
-            <div id="headModal" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content" id="modalcon1">
-                    <span class="close">&times;</span>
-                    {% if user is None or not user.is_subscriber %}
-                        <h4 class="mdl-dialog__title" id="diatitle1">Need Latest News About Sales?</h4>
-                        <div class="mdl-dialog__content" id="diacon1">
-                            <p>
-                                Track awesome offers from steam and other platforms just by entering your email!
-                            </p>
-                        </div>
-                        <div class="mdl-dialog__actions" id="diaac1">
-                            <form action="{{ newsletter_api_url }}" class="subscribe-form" id="subscribe-form_top">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="email" id="email" name="email">
-                                    <label class="mdl-textfield__label" for="email">E-mail</label>
-                                </div>
-                                <br/>
-                                <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
-                                    Submit
-                                </button>
-                            </form>
-                            {% csrf_token %}
-                        </div>
-                        <h4 class="mdl-dialog__title" id="submsg1">Thank You!</h4>
-                        <div class="mdl-dialog__content" id="subcon1">
-                            <p>
-                                You will be informed about incredible offers !
-                            </p>
-                        </div>
-                    {% else %}
-                        <h4 class="mdl-dialog__title">You Are In The Team!</h4>
-                        <div class="mdl-dialog__content">
-                            <p>
-                                You have subscribe to newsletter already!
-                            </p>
-                        </div>
-                    {% endif %}
-                </div>
-
-            </div>
-            <div class="arrow">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </section>
-    <div class="astrodivider">
-        <div class="astrodividermask"></div>
-        <span>
-        <img src="{% static 'images/steam.png' %}">
-      </span>
+  <section class="header-section">
+    <a href="#" id="next-sale"></a>
+    <div class="nav-icons">
+      <a href="#" class="instagram"><img src="{% static 'images/instagram.png' %}" alt="instagram"></a>
+      <a href="#" class="instagram"><img src="{% static 'images/gmail.png' %}" alt="gmail"></a>
+      <a href="#" class="instagram"><img src="{% static 'images/broken.png' %}" alt="privacy"></a>
     </div>
-    <section class="giveaway-section">
-        <a id="steam-giveaway"></a>
-        <h3 class="giveaway-title" id="giveaway">Get Monthly Giveaway</h3>
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--7-col mdl-cell--8-col-tablet mdl-cell--4-col-phone giveaway-item">
-                <img src="{% static 'images/csgo.jpeg' %}">
-                <h4>{{ giveaway.name }}</h4>
-                <ul class="item-info">
-                    <li><span>Giveaway Status:&nbsp;</span>
-                        {% if giveaway.is_enable %}
-                            <span style="color: green">Active</span>
-                        {% else %}
-                            <span style="color: red">Expired</span>
-                        {% endif %}
-                    </li>
-                    <li><span>Giveaway Ends In:&nbsp;</span><span>{{ giveaway.end_date }}</span></li>
-                    <li><span>Winner Will Be Announced In:&nbsp;</span><span>{{ giveaway.announce_date }}</span></li>
-                </ul>
-                {% if giveaway.is_enable %}
-                    <button class="mdl-button mdl-button--accent mdl-button--raised" id="giveaway-btn">
-                        Take a chance !
-                    </button>
-                    <!-- The Modal -->
-                    <div id="giveawayModal" class="modal">
-
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            {% if user is None or user.registered_giveaways.last.id != giveaway.id %}
-                                <h4 class="mdl-dialog__title" id="givdiatitle">Need Latest News About Sales?</h4>
-                                <div class="mdl-dialog__content" id="givdiacon">
-                                    <p>
-                                        Track awesome offers from steam and other platforms just by entering your email!
-                                    </p>
-                                </div>
-                                <div class="mdl-dialog__actions" id="givdiaac">
-                                    <form action="{{ giveaway_api_url }}" class="giveaway-form"
-                                          id="giveaway-form">{% csrf_token %}
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                            <input class="mdl-textfield__input" type="email" id="email" name="email">
-                                            <label class="mdl-textfield__label" for="email">E-mail</label>
-                                        </div>
-                                        <br/>
-                                        <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
-                                            Submit
-                                        </button>
-                                    </form>
-                                </div>
-                                <h4 class="mdl-dialog__title" id="submsg3">You Have Registered For This Giveaway!</h4>
-                                <div class="mdl-dialog__content" id="subcon3">
-                                    <p>
-                                        your referral link:
-                                    </p>
-                                    <span>wwww.example.com</span>
-                                </div>
-                            {% else %}
-                                <h4 class="mdl-dialog__title">You Have Registered Already!</h4>
-                                <div class="mdl-dialog__content">
-                                    <p>
-                                        your referral link:
-                                    </p>
-                                    <span>wwww.example.com</span>
-                                    <p style="margin-top: 20px">
-                                        send the link to your friends to grow your chance up!
-                                    </p>
-                                </div>
-                            {% endif %}
-                        </div>
-
-                    </div>
-                {% endif %}
-
+    <div class="header" id="header">
+      <video id="bgVideo" preload="true" autoplay loop muted playsinline>
+        <source src="{% static 'images/steam.mp4' %}" type="video/mp4">
+        <source src="{% static 'images/steam.webm' %}" type="video/webm">
+      </video>
+      <img id="headgif" src="{% static 'images/steam.gif' %}" alt="steam">
+      <h2 class="header-title">Next Steam Sale</h2>
+      <h3 class="sale-name">{{ sale.get_name_display }}</h3>
+      <div class="countdown">
+        <div class="countdown-time sale-date" data-date="{{ sale.sale_date|date:"F d Y" }}"
+             style="color: white"></div>
+      </div>
+      <button class="mdl-button mdl-button--accent mdl-button--raised" id="head-btn">
+        Subscribe
+      </button>
+      <!-- The Modal -->
+      <div id="headModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content" id="modalcon1">
+          <span class="close">&times;</span>
+          {% if user is None or not user.is_subscriber %}
+            <h4 class="mdl-dialog__title" id="diatitle1">Need Latest News About Sales?</h4>
+            <div class="mdl-dialog__content" id="diacon1">
+              <p>
+                Track awesome offers from steam and other platforms just by entering your email!
+              </p>
             </div>
-            <div class="mdl-cell mdl-cell--5-col mdl-cell--8-col-tablet mdl-cell--4-col-phone how-works">
-                <h3>How It Works</h3>
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when
-                    looking
-                    at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of
-                    letters, as
-                    opposed to using 'Content here, content here', making it look like readable English. Many desktop
-                    publishing
-                    packages and web page editors now use Lorem Ipsum as their default model text, and a search for
-                    'lorem ipsum'
-                    will uncover many web sites still in their infancy. Various versions have evolved over the years,
-                    sometimes by
-                    accident, sometimes on purpose (injected humour and the like).
-                </p>
+            <div class="mdl-dialog__actions" id="diaac1">
+              <form action="{{ newsletter_api_url }}" class="subscribe-form" id="subscribe-form_top">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="email" id="email" name="email">
+                  <label class="mdl-textfield__label" for="email">E-mail</label>
+                </div>
+                <br/>
+                <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
+                  Submit
+                </button>
+              </form>
+              {% csrf_token %}
             </div>
+            <h4 class="mdl-dialog__title" id="submsg1">Thank You!</h4>
+            <div class="mdl-dialog__content" id="subcon1">
+              <p>
+                You will be informed about incredible offers !
+              </p>
+            </div>
+          {% else %}
+            <h4 class="mdl-dialog__title">You Are In The Team!</h4>
+            <div class="mdl-dialog__content">
+              <p>
+                You have subscribe to newsletter already!
+              </p>
+            </div>
+          {% endif %}
         </div>
-    </section>
-    <section class="attention-section" id="attention">
-        <div class="attention-box">
-            <h3>Attention!</h3>
-            <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
-                will uncover many web sites still in their infancy. Various versions have evolved over the years,
-                sometimes by
-                accident, sometimes on purpose (injected humour and the like).</p>
-            <ul>
-                <li>Suspendisse in justo eu magna luctus suscipit.</li>
-                <li>Suspendisse in justo eu magna luctus suscipit.</li>
-                <li>Suspendisse in justo eu magna luctus suscipit.</li>
-                <li>Suspendisse in justo eu magna luctus suscipit.</li>
-                <li>Suspendisse in justo eu magna luctus suscipit.</li>
-                <li>Suspendisse in justo eu magna luctus suscipit.</li>
-            </ul>
-            <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum' sites still in their
-                infancy. </p>
 
-        </div>
-    </section>
-    <section class="update-section" id="update">
-        <h3 class="update-title">Keep Updated</h3>
-        <p class="update-para">Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus
-            magna. Quisque cursus,
-            metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum
-            primis
-            in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit
-            dolor. Sed
-            non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec
-            lacus
-            nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices
-            ultrices
-            enim. Curabitur sit amet mauris. </p>
-
-        <button class="mdl-button mdl-button--accent mdl-button--raised" id="update-btn">
-            Subscribe
-        </button>
-        <!-- The Modal -->
-        <div id="updateModal" class="modal">
+      </div>
+      <div class="arrow">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </section>
+  <div class="astrodivider">
+    <div class="astrodividermask"></div>
+    <span>
+        <img src="{% static 'images/steam.png' %}" alt="steam">
+      </span>
+  </div>
+  <section class="giveaway-section">
+    <a href="#" id="steam-giveaway"></a>
+    <h3 class="giveaway-title" id="giveaway">Get Monthly Giveaway</h3>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--7-col mdl-cell--8-col-tablet mdl-cell--4-col-phone giveaway-item">
+        <img src="{{ giveaway.image.url }}" alt="{{ giveaway.name }} giveaway">
+        <h4>{{ giveaway.name }}</h4>
+        <ul class="item-info">
+          <li><span>Giveaway Status:&nbsp;</span>
+            {% if giveaway.is_enable %}
+              <span style="color: #00d600">Active</span>
+            {% else %}
+              <span style="color: red">Expired</span>
+            {% endif %}
+          </li>
+          <li><span>Giveaway Ends In:&nbsp;</span><span>{{ giveaway.end_date }}</span></li>
+          <li><span>Winner Will Be Announced In:&nbsp;</span><span>{{ giveaway.announce_date }}</span></li>
+        </ul>
+        {% if giveaway.is_enable %}
+          <button class="mdl-button mdl-button--accent mdl-button--raised" id="giveaway-btn">
+            Take a chance !
+          </button>
+          <!-- The Modal -->
+          <div id="giveawayModal" class="modal">
 
             <!-- Modal content -->
-            <div class="modal-content" id="modalcon2">
-                <span class="close">&times;</span>
-                {% if user is None or not user.is_subscriber %}
-                    <h4 class="mdl-dialog__title" id="diatitle2">Need Latest News About Sales?</h4>
-                    <div class="mdl-dialog__content" id="diacon2">
-                        <p>
-                            Track awesome offers from steam and other platforms just by entering your email!
-                        </p>
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              {% if user is None or user.registered_giveaways.last.id != giveaway.id %}
+                <h4 class="mdl-dialog__title" id="givdiatitle">Need Latest News About Sales?</h4>
+                <div class="mdl-dialog__content" id="givdiacon">
+                  <p>
+                    Track awesome offers from steam and other platforms just by entering your email!
+                  </p>
+                </div>
+                <div class="mdl-dialog__actions" id="givdiaac">
+                  <form action="{{ giveaway_api_url }}" class="giveaway-form"
+                        id="giveaway-form">{% csrf_token %}
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      <input class="mdl-textfield__input" type="email" id="email" name="email">
+                      <label class="mdl-textfield__label" for="email">E-mail</label>
                     </div>
-                    <div class="mdl-dialog__actions" id="diaac2">
-                        <form action="{{ newsletter_api_url }}" class="subscribe-form" id="subscribe-form_bottom">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="email" id="email" name="email">
-                                <label class="mdl-textfield__label" for="email">E-mail</label>
-                            </div>
-                            <br/>
-                            <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
-                                Submit
-                            </button>
-                        </form>
-                        {% csrf_token %}
-                    </div>
-                    <h4 class="mdl-dialog__title" id="submsg2">Thank You!</h4>
-                    <div class="mdl-dialog__content" id="subcon2">
-                        <p>
-                            You will be informed about incredible offers !
-                        </p>
-                    </div>
-                {% else %}
-                    <h4 class="mdl-dialog__title">You Are In The Team!</h4>
-                    <div class="mdl-dialog__content">
-                        <p>
-                            You have subscribe to newsletter already!
-                        </p>
-                    </div>
-                {% endif %}
+                    <br/>
+                    <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
+                      Submit
+                    </button>
+                  </form>
+                </div>
+                <h4 class="mdl-dialog__title" id="submsg3">You Have Registered For This Giveaway!</h4>
+                <div class="mdl-dialog__content" id="subcon3">
+                  <p>
+                    your referral link:
+                  </p>
+                  <span>wwww.example.com</span>
+                </div>
+              {% else %}
+                <h4 class="mdl-dialog__title">You Have Registered Already!</h4>
+                <div class="mdl-dialog__content">
+                  <p>
+                    your referral link:
+                  </p>
+                  <span>wwww.example.com</span>
+                  <p style="margin-top: 20px">
+                    send the link to your friends to grow your chance up!
+                  </p>
+                </div>
+              {% endif %}
             </div>
 
-        </div>
-        <br/>
+          </div>
+        {% endif %}
 
-        <img src="{% static 'images/bell.gif' %}">
+      </div>
+      <div class="mdl-cell mdl-cell--5-col mdl-cell--8-col-tablet mdl-cell--4-col-phone how-works">
+        <h3>How It Works</h3>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+          looking
+          at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of
+          letters, as
+          opposed to using 'Content here, content here', making it look like readable English. Many desktop
+          publishing
+          packages and web page editors now use Lorem Ipsum as their default model text, and a search for
+          'lorem ipsum'
+          will uncover many web sites still in their infancy. Various versions have evolved over the years,
+          sometimes by
+          accident, sometimes on purpose (injected humour and the like).
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="attention-section" id="attention">
+    <div class="attention-box">
+      <h3>Attention!</h3>
+      <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
+        will uncover many web sites still in their infancy. Various versions have evolved over the years,
+        sometimes by
+        accident, sometimes on purpose (injected humour and the like).</p>
+      <ul>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+        <li>Suspendisse in justo eu magna luctus suscipit.</li>
+      </ul>
+      <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum' sites still in their
+        infancy. </p>
 
-    </section>
-    <footer class="mdl-mini-footer">
-        <div class="mdl-mini-footer__left-section">
-            <div class="mdl-logo">Next Steam Sale</div>
-            <ul class="mdl-mini-footer__link-list">
-                <li><a href="#">Privacy & Terms</a></li>
-            </ul>
-        </div>
-    </footer>
+    </div>
+  </section>
+  <section class="update-section" id="update">
+    <h3 class="update-title">Keep Updated</h3>
+    <p class="update-para">Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus
+      magna. Quisque cursus,
+      metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum
+      primis
+      in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit
+      dolor. Sed
+      non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec
+      lacus
+      nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices
+      ultrices
+      enim. Curabitur sit amet mauris. </p>
+
+    <button class="mdl-button mdl-button--accent mdl-button--raised" id="update-btn">
+      Subscribe
+    </button>
+    <!-- The Modal -->
+    <div id="updateModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content" id="modalcon2">
+        <span class="close">&times;</span>
+        {% if user is None or not user.is_subscriber %}
+          <h4 class="mdl-dialog__title" id="diatitle2">Need Latest News About Sales?</h4>
+          <div class="mdl-dialog__content" id="diacon2">
+            <p>
+              Track awesome offers from steam and other platforms just by entering your email!
+            </p>
+          </div>
+          <div class="mdl-dialog__actions" id="diaac2">
+            <form action="{{ newsletter_api_url }}" class="subscribe-form" id="subscribe-form_bottom">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="email" id="email" name="email">
+                <label class="mdl-textfield__label" for="email">E-mail</label>
+              </div>
+              <br/>
+              <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
+                Submit
+              </button>
+            </form>
+            {% csrf_token %}
+          </div>
+          <h4 class="mdl-dialog__title" id="submsg2">Thank You!</h4>
+          <div class="mdl-dialog__content" id="subcon2">
+            <p>
+              You will be informed about incredible offers !
+            </p>
+          </div>
+        {% else %}
+          <h4 class="mdl-dialog__title">You Are In The Team!</h4>
+          <div class="mdl-dialog__content">
+            <p>
+              You have subscribe to newsletter already!
+            </p>
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+    <br/>
+
+    <img src="{% static 'images/bell.gif' %}" alt="subscribe">
+
+  </section>
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__left-section">
+      <div class="mdl-logo">Next Steam Sale</div>
+      <ul class="mdl-mini-footer__link-list">
+        <li><a href="#">Privacy & Terms</a></li>
+      </ul>
+    </div>
+  </footer>
 {% endblock %}
 
 {% block js %}
-    {{ block.super }}
-    <script>
-        var countdown = $('.countdown-time');
-        createTimeCicles();
-        $(window).on('resize', windowSize);
+  {{ block.super }}
+  <script>
+    var countdown = $('.countdown-time');
+    createTimeCicles();
+    $(window).on('resize', windowSize);
 
-        function windowSize() {
-            countdown.TimeCircles().destroy();
-            createTimeCicles();
-            countdown.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd animationEnd', function () {
-                countdown.removeClass('animated bounceIn');
-            });
-        }
+    function windowSize() {
+      countdown.TimeCircles().destroy();
+      createTimeCicles();
+      countdown.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd animationEnd', function () {
+        countdown.removeClass('animated bounceIn');
+      });
+    }
 
-        function createTimeCicles() {
-            countdown.addClass('animated bounceIn');
-            countdown.TimeCircles({
-                fg_width: 0.02,
-                bg_width: 0.3,
-                circle_bg_color: '#ffffff',
-                time: {
-                    Days: {
-                        color: '#b261c9'
-                    },
-                    Hours: {
-                        color: '#b261c9'
-                    },
-                    Minutes: {
-                        color: '#b261c9'
-                    },
-                    Seconds: {
-                        color: '#b261c9'
-                    }
-                }
-            });
-            countdown.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd animationEnd', function () {
-                countdown.removeClass('animated bounceIn');
-            });
+    function createTimeCicles() {
+      countdown.addClass('animated bounceIn');
+      countdown.TimeCircles({
+        fg_width: 0.02,
+        bg_width: 0.3,
+        circle_bg_color: '#ffffff',
+        time: {
+          Days: {
+            color: '#b261c9'
+          },
+          Hours: {
+            color: '#b261c9'
+          },
+          Minutes: {
+            color: '#b261c9'
+          },
+          Seconds: {
+            color: '#b261c9'
+          }
         }
-    </script>
+      });
+      countdown.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd animationEnd', function () {
+        countdown.removeClass('animated bounceIn');
+      });
+    }
+  </script>
 
 {% endblock %}

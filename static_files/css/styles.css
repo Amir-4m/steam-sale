@@ -19,7 +19,11 @@ body {
   position: relative;
 }
 
-#bgVideo {
+#headgif {
+  display: none;
+}
+
+#bgVideo, #headgif {
   width: 36%;
   margin-bottom: 20px;
   z-index: -1;

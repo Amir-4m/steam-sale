@@ -11,6 +11,7 @@ class Giveaway(models.Model):
     winner = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='won_giveaways', blank=True, null=True)
     registered_users = models.ManyToManyField(Account, related_name='registered_giveaways', blank=True)
     is_enable = models.BooleanField(default=True)
+    start_date = models.DateField(_('start date'))
     end_date = models.DateField(_('end date'))
     announce_date = models.DateField(_('announce date'))
     created_time = models.DateTimeField(_('created time'), auto_now_add=True)

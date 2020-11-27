@@ -21,6 +21,7 @@ class NextSale(models.Model):
 
     name = models.CharField(_('name'), max_length=20, choices=SALE_CHOICES, unique=True)
     sale_date = models.DateField(_('sale date'))
+    end_date = models.DateField(_('sale date'))
     approved = models.BooleanField(_('approved'), default=False)
     is_enable = models.BooleanField(_('is_enable'), default=True)
     created_time = models.DateTimeField(_('created time'), auto_now_add=True)
