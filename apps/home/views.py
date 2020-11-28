@@ -3,6 +3,7 @@ from urllib.parse import unquote
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_control, cache_page
+from django.views.decorators.vary import vary_on_cookie
 from django.views.generic import TemplateView
 
 from apps.giveaways.models import Giveaway
@@ -13,6 +14,7 @@ from .models import NextSale
 
 @method_decorator(cache_control(max_age=1 * 24 * 60 * 60), name='get')  # 1 day
 @method_decorator(cache_page(1 * 24 * 60 * 60), name='get')  # 1 day
+@method_decorator(vary_on_cookie, name='get')
 class HomeView(TemplateView):
     template_name = 'home/index.html'
 
