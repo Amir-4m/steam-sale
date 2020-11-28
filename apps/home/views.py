@@ -32,6 +32,7 @@ class HomeView(TemplateView):
             "giveaway": Giveaway.objects.last(),
             "newsletter_api_url": reverse('subscribe'),
             "giveaway_api_url": reverse('register'),
-            "user": user
+            "user": user,
+            "description": " Find out and check the next steam sale out and get free monthly giveaways!"
         })
         return context

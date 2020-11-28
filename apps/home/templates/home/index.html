@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block extra_head %}
+  <meta name="description" content="{{ description }}">
   {% include 'home/includes/schema.html' %}
 {% endblock %}
 {% block content %}
@@ -18,7 +19,7 @@
         <source src="{% static 'images/steam.webm' %}" type="video/webm">
       </video>
       <img id="headgif" src="{% static 'images/steam.gif' %}" alt="steam">
-      <h2 class="header-title">Next Steam Sale</h2>
+      <h2 class="header-title">Next Steam Sales</h2>
       <h3 class="sale-name">{{ sale.get_name_display }}</h3>
       <div class="countdown">
         <div class="countdown-time sale-date" data-date="{{ sale.sale_date|date:"F d Y" }}"
@@ -36,7 +37,7 @@
             <h4 class="mdl-dialog__title" id="diatitle1">Need Latest News About Sales?</h4>
             <div class="mdl-dialog__content" id="diacon1">
               <p>
-                Track awesome offers from steam and other platforms just by entering your email!
+                Track awesome offers and giveaways just by entering your email!
               </p>
             </div>
             <div class="mdl-dialog__actions" id="diaac1">
@@ -111,10 +112,10 @@
             <div class="modal-content">
               <span class="close">&times;</span>
               {% if user is None or user.registered_giveaways.last.id != giveaway.id %}
-                <h4 class="mdl-dialog__title" id="givdiatitle">Need Latest News About Sales?</h4>
+                <h4 class="mdl-dialog__title" id="givdiatitle">Register For The giveaway now!</h4>
                 <div class="mdl-dialog__content" id="givdiacon">
                   <p>
-                    Track awesome offers from steam and other platforms just by entering your email!
+                    You can register and participate in {{ giveaway.name }} giveaway just by filling out the form below.
                   </p>
                 </div>
                 <div class="mdl-dialog__actions" id="givdiaac">
@@ -135,7 +136,13 @@
                   <p>
                     your referral link:
                   </p>
-                  <span>wwww.example.com</span>
+                  <span id="reflink">wwww.example.com</span>
+                  <button id="copybtn" onclick="copyToClipboard('reflink')">
+                    <img src="{% static 'images/copy.png' %}">
+                  </button>
+                  <p style="margin-top: 20px">
+                    send the link to your friends to grow your chance up!
+                  </p>
                 </div>
               {% else %}
                 <h4 class="mdl-dialog__title">You Have Registered Already!</h4>
@@ -143,7 +150,11 @@
                   <p>
                     your referral link:
                   </p>
-                  <span>wwww.example.com</span>
+                  <span id="reflink">wwww.example.com</span>
+                  <br/>
+                  <button id="copybtn" onclick="copyToClipboard('#reflink')">
+                    <img alt="copy" class="copyimg" src="{% static 'images/copy.png' %}">
+                  </button>
                   <p style="margin-top: 20px">
                     send the link to your friends to grow your chance up!
                   </p>
@@ -157,17 +168,17 @@
       </div>
       <div class="mdl-cell mdl-cell--5-col mdl-cell--8-col-tablet mdl-cell--4-col-phone how-works">
         <h3>How It Works</h3>
-        <p>It is a long established fact that a reader will be distracted by the readable content of a page when
-          looking
-          at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of
-          letters, as
-          opposed to using 'Content here, content here', making it look like readable English. Many desktop
-          publishing
-          packages and web page editors now use Lorem Ipsum as their default model text, and a search for
-          'lorem ipsum'
-          will uncover many web sites still in their infancy. Various versions have evolved over the years,
-          sometimes by
-          accident, sometimes on purpose (injected humour and the like).
+        <p>
+          Giveaways are always one of the most exciting things in the world.
+          We provide monthly giveaways which can be steam games, gaming hardware, mystery boxes and much more other
+          things!
+          Giveaways start in first day of each month and end in 25th day of the month.
+          The winner will be announced here, 3 days after the giveaway ending.
+          We will contact the winner by email to complete his/her giveaway sending.
+          Participating in giveaways is not hard at all.By clicking on "Take a chance!" button and filling out the form,
+          you will be registered for the giveaway and also you will receive a referral link. You can send this link to
+          your friends to invite them to participate in the giveaway too.
+          Each person participates by your link, will grow your winning chance up.
         </p>
       </div>
     </div>
@@ -175,43 +186,47 @@
   <section class="attention-section" id="attention">
     <div class="attention-box">
       <h3>Attention!</h3>
-      <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum'
-        will uncover many web sites still in their infancy. Various versions have evolved over the years,
-        sometimes by
-        accident, sometimes on purpose (injected humour and the like).</p>
-      <ul>
-        <li>Suspendisse in justo eu magna luctus suscipit.</li>
-        <li>Suspendisse in justo eu magna luctus suscipit.</li>
-        <li>Suspendisse in justo eu magna luctus suscipit.</li>
-        <li>Suspendisse in justo eu magna luctus suscipit.</li>
-        <li>Suspendisse in justo eu magna luctus suscipit.</li>
-        <li>Suspendisse in justo eu magna luctus suscipit.</li>
-      </ul>
-      <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum' sites still in their
-        infancy. </p>
-
+      <div class="attention-content">
+        <p class="attention-intro">
+          We would be happy if you take your time to read the text below in order to be conscious about some of the
+          important points of our website to keep everything right and clear.
+        </p>
+        <ul>
+          <li>
+            Dates of the steam sales are all an estimation based on the data we gathered.
+          </li>
+          <li>
+            If any sale date is confirmed by the Valve Corporation, we append a "confirmed" tag on top of the sale name.
+          </li>
+          <li>
+            No new registration will be accepted after the giveaway ends.
+          </li>
+          <li>
+            For each new giveaway, you need to register and get a new referral link.
+          </li>
+          <li>
+            NextSteamSales.com will never ask you your steam password.
+          </li>
+          <li>
+            NextSteamSales.com will contact the winner only by email.
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
   <section class="update-section" id="update">
     <h3 class="update-title">Keep Updated</h3>
-    <p class="update-para">Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus
-      magna. Quisque cursus,
-      metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum
-      primis
-      in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit
-      dolor. Sed
-      non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec
-      lacus
-      nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices
-      ultrices
-      enim. Curabitur sit amet mauris. </p>
-
+    <p class="update-para">
+      Thinking about how you can keep being updated about sales, events and giveaways? There is always an easy way to
+      keep track of steam and events news. You can subscribe in our newsletter to receive awesome news about steam
+      sales, new offers, new updates, upcoming giveaways and much more. Subscribe now and enjoy weekly fresh and awesome
+      news!
+    </p>
     <button class="mdl-button mdl-button--accent mdl-button--raised" id="update-btn">
       Subscribe
     </button>
     <!-- The Modal -->
     <div id="updateModal" class="modal">
-
       <!-- Modal content -->
       <div class="modal-content" id="modalcon2">
         <span class="close">&times;</span>
@@ -219,7 +234,7 @@
           <h4 class="mdl-dialog__title" id="diatitle2">Need Latest News About Sales?</h4>
           <div class="mdl-dialog__content" id="diacon2">
             <p>
-              Track awesome offers from steam and other platforms just by entering your email!
+              Track awesome offers and giveaways just by entering your email!
             </p>
           </div>
           <div class="mdl-dialog__actions" id="diaac2">
@@ -250,12 +265,9 @@
           </div>
         {% endif %}
       </div>
-
     </div>
     <br/>
-
     <img src="{% static 'images/bell.gif' %}" alt="subscribe">
-
   </section>
   <footer class="mdl-mini-footer">
     <div class="mdl-mini-footer__left-section">

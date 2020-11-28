@@ -62,6 +62,15 @@ window.onclick = function (event) {
   }
 };
 
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  console.log($(element).text());
+  document.execCommand("copy");
+  $temp.remove();
+}
+
 (function ($) {
   $(document).ready(function () {
 

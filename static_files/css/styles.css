@@ -15,7 +15,7 @@ body {
   width: 50%;
   margin: auto;
   text-align: center;
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
 }
 
@@ -331,6 +331,11 @@ body {
 
 }
 
+.attention-intro {
+  font-size: 1.2rem;
+  margin: auto;
+}
+
 .attention-section h3, h4, h5 {
   font-family: 'Goldman', cursive;
   color: #e27cff;
@@ -345,8 +350,13 @@ body {
   border-radius: 25px;
 }
 
+.attention-content {
+  width: 90%;
+  margin: auto;
+  text-align: justify;
+}
+
 .attention-box li {
-  list-style: none;
   font-size: 1.216rem;
   margin-bottom: 15px;
 }
@@ -391,6 +401,19 @@ body {
 
 .mdl-mini-footer {
   background-color: #0a0010cf;
+}
+
+
+#copybtn {
+  background: white;
+  color: white;
+  margin-top: 20px;
+  border: none;
+}
+
+.copyimg {
+  width: 20px !important;
+  box-shadow: none !important;
 }
 
 @keyframes animate {
