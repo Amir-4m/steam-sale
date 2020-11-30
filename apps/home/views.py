@@ -35,6 +35,6 @@ class HomeView(TemplateView):
             "newsletter_api_url": reverse('subscribe'),
             "giveaway_api_url": reverse('register'),
             "user": user,
-            "description": " Find out and check the next steam sale out and get free monthly giveaways!"
+            "description": " Find out and check the next steam sale out and get free monthly incredible giveaways!"
         })
         return context
