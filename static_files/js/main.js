@@ -66,7 +66,6 @@ function copyToClipboard(element) {
   var $temp = $("<input>");
   $("body").append($temp);
   $temp.val($(element).text()).select();
-  console.log($temp.val($(element).text()));
   document.execCommand("copy");
   $temp.remove();
 }
@@ -151,7 +150,6 @@ function copyToClipboard(element) {
     posting.done(function (data) {
       $.cookie('s_uid', data.token, {expires: 10});
       var link = $('#reflink');
-      console.log(link);
       link.text('nextsteamsales/?ic=' + data.ic);
       $.post(url, {email: email, is_subscriber: true, csrfmiddlewaretoken: $crf_token});
       $("#givdiatitle").fadeOut(1000);
