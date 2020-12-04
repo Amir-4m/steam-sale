@@ -175,10 +175,11 @@
                     <p>
                       your referral link:
                     </p>
-                    <span id="reflink">wwww.example.com</span>
-                    <button id="copybtn" onclick="copyToClipboard('reflink')">
-                      <img alt="copy" class="copyimg" src="{% static 'images/copy.png' %}">
-                    </button>
+                      <span id="reflink"></span>
+                      <br/>
+                      <button id="copybtn" onclick="copyToClipboard('#reflink')">
+                        <img alt="copy" class="copyimg" src="{% static 'images/copy.png' %}">
+                      </button>
                     <p style="margin-top: 20px">
                       send the link to your friends to grow your chance up!
                     </p>
@@ -189,11 +190,13 @@
                     <p>
                       your referral link:
                     </p>
-                    <span id="reflink">wwww.example.com</span>
-                    <br/>
-                    <button id="copybtn" onclick="copyToClipboard('#reflink')">
-                      <img alt="copy" class="copyimg" src="{% static 'images/copy.png' %}">
-                    </button>
+                    {% if user.invitation_code %}
+                      <span id="reflink">{{ site.domain }}/?ic={{ user.invitation_code }}</span>
+                      <br/>
+                      <button id="copybtn" onclick="copyToClipboard('#reflink')">
+                        <img alt="copy" class="copyimg" src="{% static 'images/copy.png' %}">
+                      </button>
+                    {% endif %}
                     <p style="margin-top: 20px">
                       send the link to your friends to grow your chance up!
                     </p>

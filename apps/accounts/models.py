@@ -4,13 +4,13 @@ from django.db import models
 class Account(models.Model):
     email = models.EmailField()
     # steam_id = models.CharField(max_length=120, unique=True, null=True)
-    referral_link = models.URLField(null=True, blank=False)
+    invitation_code = models.URLField(null=True, blank=False)
     is_subscriber = models.BooleanField(default=False)
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ('email', 'referral_link')
+        unique_together = ('email', 'invitation_code')
 
     def referred_accounts(self):
         return Referred.objects.filter(referrer=self).count()

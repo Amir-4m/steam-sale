@@ -9,7 +9,7 @@ from .serializers import GiveawaySerializer
 class GiveawayApiView(views.APIView):
 
     def post(self, request, *args, **kwargs):
-        serializer = GiveawaySerializer(data=request.data)
+        serializer = GiveawaySerializer(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         encoded = base64.b64encode(serializer.validated_data['email'].encode('ascii'))
-        return Response({'token': encoded})
+        return Response({'token': encoded, 'ic': serializer.validated_data['ic']})
