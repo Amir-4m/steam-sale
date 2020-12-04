@@ -88,7 +88,7 @@ function copyToClipboard(element) {
 
     // Get some values from elements on the page:
     var $form = $(this),
-      email = $form.find("input[name='email']").val(),
+      email = $form.find("input[name='emailsub1']").val(),
       url = $form.attr("action");
 
     // Send the data using post
@@ -114,7 +114,7 @@ function copyToClipboard(element) {
 
     // Get some values from elements on the page:
     var $form = $(this),
-      email = $form.find("input[name='email']").val(),
+      email = $form.find("input[name='emailsub2']").val(),
       url = $form.attr("action");
 
     // Send the data using post
@@ -190,25 +190,25 @@ class Birthday {
   }
 
   onClick(evt) {
-     let x = evt.clientX || evt.touches && evt.touches[0].pageX
-     let y = evt.clientY || evt.touches && evt.touches[0].pageY
+    let x = evt.clientX || evt.touches && evt.touches[0].pageX
+    let y = evt.clientY || evt.touches && evt.touches[0].pageY
 
-     let count = random(3,5)
-     for(let i = 0; i < count; i++) this.fireworks.push(new Firework(
-        random(this.spawnA, this.spawnB),
-        this.height,
-        x,
-        y,
-        random(250, 360),
-        random(30, 110)))
+    let count = random(3, 5)
+    for (let i = 0; i < count; i++) this.fireworks.push(new Firework(
+      random(this.spawnA, this.spawnB),
+      this.height,
+      x,
+      y,
+      random(250, 360),
+      random(30, 110)))
 
-     this.counter = -1
+    this.counter = -1
 
   }
 
   update(delta) {
     ctx.globalCompositeOperation = 'hard-light'
-    ctx.fillStyle = `rgba(20,20,20,${ 7 * delta })`
+    ctx.fillStyle = `rgba(20,20,20,${7 * delta})`
     ctx.fillRect(0, 0, this.width, this.height)
 
     ctx.globalCompositeOperation = 'lighter'
@@ -246,6 +246,7 @@ class Firework {
     this.shade = shade
     this.history = []
   }
+
   update(delta) {
     if (this.dead) return
 
@@ -281,14 +282,14 @@ class Firework {
 
     if (this.history.length === 0) this.dead = true
     else if (this.offsprings) {
-        for (let i = 0; this.history.length > i; i++) {
-          let point = this.history[i]
-          ctx.beginPath()
-          ctx.fillStyle = 'hsl(' + this.shade + ',100%,' + i + '%)'
-          ctx.arc(point.x, point.y, 1, 0, PI2, false)
-          ctx.fill()
-        }
-      } else {
+      for (let i = 0; this.history.length > i; i++) {
+        let point = this.history[i]
+        ctx.beginPath()
+        ctx.fillStyle = 'hsl(' + this.shade + ',100%,' + i + '%)'
+        ctx.arc(point.x, point.y, 1, 0, PI2, false)
+        ctx.fill()
+      }
+    } else {
       ctx.beginPath()
       ctx.fillStyle = 'hsl(' + this.shade + ',100%,50%)'
       ctx.arc(this.x, this.y, 1, 0, PI2, false)
@@ -299,23 +300,27 @@ class Firework {
 }
 
 let canvas = document.getElementById('birthday')
-let ctx = canvas.getContext('2d')
+console.log(canvas)
+if (canvas !== null) {
+  let ctx = canvas.getContext('2d')
 
-let then = timestamp()
+  let then = timestamp()
 
-let birthday = new Birthday
-window.onresize = () => birthday.resize()
-document.onclick = evt => birthday.onClick(evt)
-document.ontouchstart = evt => birthday.onClick(evt)
+  let birthday = new Birthday
+  window.onresize = () => birthday.resize()
+  document.onclick = evt => birthday.onClick(evt)
+  document.ontouchstart = evt => birthday.onClick(evt)
 
-  ;(function loop(){
-  	requestAnimationFrame(loop)
+  ;(function loop() {
+    requestAnimationFrame(loop)
 
-  	let now = timestamp()
-  	let delta = now - then
+    let now = timestamp()
+    let delta = now - then
 
     then = now
     birthday.update(delta / 1000)
 
 
   })()
+
+}

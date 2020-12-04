@@ -12,9 +12,9 @@ from apps.accounts.models import Account
 from .models import NextSale
 
 
-@method_decorator(cache_control(max_age=1 * 24 * 60 * 60), name='get')  # 1 day
-@method_decorator(cache_page(1 * 24 * 60 * 60), name='get')  # 1 day
-@method_decorator(vary_on_cookie, name='get')
+# @method_decorator(cache_control(max_age=1 * 24 * 60 * 60), name='get')  # 1 day
+# @method_decorator(cache_page(1 * 24 * 60 * 60), name='get')  # 1 day
+# @method_decorator(vary_on_cookie, name='get')
 class HomeView(TemplateView):
     template_name = 'home/index.html'
 
@@ -30,7 +30,7 @@ class HomeView(TemplateView):
 
         context = super(HomeView, self).get_context_data(**kwargs)
         context.update({
-            "sale": NextSale.objects.order_by('-sale_date').first(),
+            "sale": NextSale.objects.order_by('sale_date').filter(is_enable=True).first(),
             "giveaway": Giveaway.objects.last(),
             "newsletter_api_url": reverse('subscribe'),
             "giveaway_api_url": reverse('register'),

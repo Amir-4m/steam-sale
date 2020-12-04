@@ -24,8 +24,9 @@
       {% endif %}
       <a href="#" id="next-sale"></a>
       <div class="nav-icons">
-        <a href="#" class="instagram"><img src="{% static 'images/instagram.png' %}" alt="instagram"></a>
-        <a href="#" class="instagram"><img src="{% static 'images/gmail.png' %}" alt="gmail"></a>
+        <a class="gmail" href="mailto:test@example.com" target="_top">
+          <img src="{% static 'images/gmail.png' %}" alt="gmail">
+        </a>
         <a href="#" class="instagram"><img src="{% static 'images/broken.png' %}" alt="privacy"></a>
       </div>
       <div class="header" id="header">
@@ -33,9 +34,9 @@
           <source src="{% static 'images/steam.mp4' %}" type="video/mp4">
           <source src="{% static 'images/steam.webm' %}" type="video/webm">
         </video>
-        <img id="headgif" src="{% static 'images/steam.gif' %}" alt="steam">
+        <img id="headgif" src="{% static 'images/steam-head.png' %}" alt="steam">
         <h2 class="header-title">Next Steam Sales</h2>
-        <h3 class="sale-name">{{ sale.get_name_display }}</h3>
+        <h3 class="sale-name">{{ sale.name }}</h3>
 
         {% if not sale.in_sale %}
           <div class="countdown">
@@ -76,8 +77,8 @@
               <div class="mdl-dialog__actions" id="diaac1">
                 <form action="{{ newsletter_api_url }}" class="subscribe-form" id="subscribe-form_top">
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="email" id="email" name="email">
-                    <label class="mdl-textfield__label" for="email">E-mail</label>
+                    <input class="mdl-textfield__input" type="email" id="emailsub1" name="emailsub1">
+                    <label class="mdl-textfield__label" for="emailsub1">E-mail</label>
                   </div>
                   <br/>
                   <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
@@ -293,8 +294,8 @@
             <div class="mdl-dialog__actions" id="diaac2">
               <form action="{{ newsletter_api_url }}" class="subscribe-form" id="subscribe-form_bottom">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="email" id="email" name="email">
-                  <label class="mdl-textfield__label" for="email">E-mail</label>
+                  <input class="mdl-textfield__input" type="email" id="emailsub2" name="emailsub2">
+                  <label class="mdl-textfield__label" for="emailsub2">E-mail</label>
                 </div>
                 <br/>
                 <button class="mdl-button mdl-button--accent mdl-button--raised" id="sub">
@@ -320,7 +321,7 @@
         </div>
       </div>
       <br/>
-      <img src="{% static 'images/bell.gif' %}" alt="subscribe">
+      <img src="{% static 'images/bell.jpg' %}" alt="subscribe">
     </section>
     <footer class="mdl-mini-footer">
       <div class="mdl-mini-footer__left-section">
