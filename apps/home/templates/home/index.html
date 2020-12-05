@@ -37,6 +37,7 @@
         <img id="headgif" src="{% static 'images/steam-head.png' %}" alt="steam">
         <h2 class="header-title">Next Steam Sales</h2>
         <h3 class="sale-name">{{ sale.name }}</h3>
+      <h5 class="sale-date_s">{{ sale.sale_date|date:"F d Y" }}</h5>
 
         {% if not sale.in_sale %}
           <div class="countdown">

@@ -232,11 +232,19 @@ a {
   animation: zoomIn 0.9s;
 }
 
-.sale-date {
+.sale-date_s {
   -webkit-animation: zoomIn 1.2s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: zoomIn 1.2s; /* Firefox < 16 */
   -o-animation: zoomIn 1.2s; /* Opera < 12.1 */
   animation: zoomIn 1.2s;
+}
+
+.sale-date {
+  font-size: 1.4rem;
+  -webkit-animation: zoomIn 1.5s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: zoomIn 1.5s; /* Firefox < 16 */
+  -o-animation: zoomIn 1.5s; /* Opera < 12.1 */
+  animation: zoomIn 1.5s;
 }
 
 .countdown {
@@ -791,6 +799,7 @@ a {
 
   #head-btn {
     width: 50%;
+    margin: 19px 0;
   }
 
   #update-btn {
