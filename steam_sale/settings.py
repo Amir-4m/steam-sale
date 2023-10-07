@@ -29,11 +29,19 @@ DEVEL = config("DEVEL", default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost', cast=Csv())
 
+SITE_ID = 1
+
 # Application definition
 
 INSTALLED_APPS = [
     "apps.home",
+    "apps.giveaways",
+    "apps.accounts",
+    "apps.newsletters",
+    "rest_framework",
 
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

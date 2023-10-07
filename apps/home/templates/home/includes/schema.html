@@ -1,0 +1,27 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "description" : "{{ description }}",
+  "startDate": "{{ sale.sale_date }}",
+  "endDate": "{{ sale.end_date }}",
+  "name": "{{ sale.name }}",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode":"online",
+  "offers": {
+    "@type": "Offer",
+    "name": "{{ giveaway.name }}",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability" : "https://schema.org/LimitedAvailability",
+    "url": "www.example.com",
+    "validFrom" : "{{ giveaway.announce_date }}"
+    },
+  "location": {
+    "@type": "VirtualLocation",
+    "name": "Next Steam Sales",
+    "url": "www.example.com"
+  }
+}
+</script>
+

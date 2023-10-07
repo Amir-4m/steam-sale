@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import NextSale
 
-# Register your models here.
+
+@admin.register(NextSale)
+class NextSaleAdmin(admin.ModelAdmin):
+    list_display = ('name', 'approved', 'sale_date', 'is_enable')
